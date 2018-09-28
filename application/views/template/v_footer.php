@@ -28,7 +28,7 @@
 <!-- Custom JAvascript Dynamic -->
 <?php if(isset($js)){
   foreach ($js as $js) {
-    echo '<script src="'.base_url("$js").'"></script>';
+    echo '<script src="'.base_url("assets/js/$js").'"></script>';
   }
 }?>
 

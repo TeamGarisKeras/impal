@@ -129,7 +129,7 @@
                         <li><a href="<?=base_url()?>post">View Data</a></li>
                       </ul>
                     </li>
-                    <li><a href="dashboard/obat"><i class="fa fa-file" aria-hidden="true"></i>Kelola Obat</a></li>
+                    <li><a href="<?=base_url('obat')?>"><i class="fa fa-file" aria-hidden="true"></i>Kelola Obat</a></li>
           </ul>
           <span class="heading">Extras</span>
           <ul class="list-unstyled">
