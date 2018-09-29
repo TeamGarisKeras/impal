@@ -5,10 +5,12 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->model('M_jabatan');
 		$css = array(); // Alamat CSS Dinamis
 		$js = array(); // Alamat JS Dinamis
 		$data = array('title' => "Dashboard",
 									'css' => $css,
+									'list_jabatan' => $this->M_jabatan->get_all_jabatan(),
 									'js' => $js); // Data yang mau di passing
 		$this->load->view('template/v_header', $data); // Passing data dari controller Admin ke View nya
 		$this->load->view('v_dashboard');

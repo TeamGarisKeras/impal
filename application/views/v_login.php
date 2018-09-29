@@ -31,8 +31,8 @@
                 </div>
                 <?= form_open('')?>
                   <div class="form-group">
-                    <label class="" for="username">Username</label>
-                    <input type="text" class="form-control" name="_username" placeholder="Username">
+                    <label class="" for="username">ID</label>
+                    <input type="text" class="form-control" name="_id" placeholder="ID Karyawan">
                   </div>
                   <div class="form-group">
                     <label class="" for="username">Password</label>

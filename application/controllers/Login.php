@@ -11,14 +11,14 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-    $this->form_validation->set_rules('_username', 'Username', 'required');
+    $this->form_validation->set_rules('_id', 'Id Karyawan', 'required');
     $this->form_validation->set_rules('_password', 'Password', 'required');
 		if(!$this->form_validation->run()){
       $this->load->view('v_login');
     }else{
       if($this->M_login->check_credential()){
-        $username = set_value('_username');
-        $data = $this->M_login->get_akun($username);
+        $id_karyawan = set_value('_id');
+        $data = $this->M_login->get_akun($id_karyawan);
         $this->session->set_userdata($data);
         redirect('dashboard');
 

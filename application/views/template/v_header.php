@@ -117,6 +117,14 @@
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
                     <li class="active"><a href="<?=base_url()?>dashboard"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                    <li><a href="#karyawanDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-usd" aria-hidden="true"></i>Karyawan</a>
+                      <ul id="karyawanDropdown" class="collapse list-unstyled ">
+                        <?php foreach ($list_jabatan as $grid_jabatan):
+                          echo '<li><a href="'.base_url("karyawan/c/$grid_jabatan->nama_jabatan").'">'.$grid_jabatan->nama_jabatan.'</a></li>';
+                        endforeach; ?>
+                      </ul>
+                    </li>
+                    <li class=""><a href="<?=base_url()?>jabatan"><i class="fa fa-home" aria-hidden="true"></i>Jabatan</a></li>
                     <li><a href="#finaceDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-usd" aria-hidden="true"></i>Keuangan</a>
                       <ul id="finaceDropdown" class="collapse list-unstyled ">
                         <li><a href="<?=base_url()?>perkiraan">Estimate</a></li>

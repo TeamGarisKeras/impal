@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | so that a different class/function is called than the one
 | corresponding to the URL.
 |
-| Please see the user guide for complete details:
+| Please see the $id_karyawan guide for complete details:
 |
 |	https://codeigniter.com/user_guide/general/routing.html
 |
@@ -55,3 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['dashboard'] = 'Users';
 $route['dashboard/obat'] = 'Obat';
+$route['karyawan/add'] = 'karyawan/add';
+$route['karyawan/c/(:any)'] = 'karyawan/show_karyawan';
+$route['karyawan/insert'] = 'karyawan/insert';

@@ -1,58 +1,41 @@
 <?php
 
-function set_id_gallery(){
+
+function set_id_karyawan(){
     $CI =& get_instance();
     $reg = "";
-    $now = date('Y-m-d');
 
     $CI->db->select('id');
-    $CI->db->from('tbl_gallery');
-    $CI->db->where('date', $now);
+    $CI->db->from('tbl_karyawan');
     $CI->db->order_by('id', 'desc');
     $CI->db->limit(1);
     $query_reg = $CI->db->get();
 
     if($query_reg->num_rows() > 0){
       $reg = $query_reg->row()->id;
-      $reg = substr($reg, 8);
+      $reg = substr($reg, 2);
       $reg++;
 
-      if(strlen($reg) == 1){ $reg='0'.$reg; }
-      else{ $reg = $reg;}
+      if(strlen($reg) == 1){
+        $reg='0000'.$reg;
+      }elseif(strlen($reg)==2){
+        $reg='000'.$reg;
+      }elseif(strlen($reg)==3){
+        $reg='00'.$reg;
+      }elseif(strlen($reg)==4){
+        $reg='0'.$reg;
+      }
+      else{
+        $reg = $reg;
+      }
 
-      $reg = 'GE'.date("y").date("m").date("d").$reg;
+      $reg = 'KY'.$reg;
     }else{
-      $reg = 'GE'.date("y").date("m").date("d").'01';
+      $reg = 'KY'.'00001';
     }
     return $reg;
 }
 
-function set_id_keuangan(){
-  $CI =& get_instance();
-  $reg = "";
-  $now = date('Y-m-d');
-
-  $CI->db->select('id');
-  $CI->db->from('tbl_keuangan');
-  $CI->db->where('tanggal', $now);
-  $CI->db->order_by('id', 'desc');
-  $CI->db->limit(1);
-  $query_reg = $CI->db->get();
-
-  if($query_reg->num_rows() > 0){
-    $reg = $query_reg->row()->id;
-    $reg = substr($reg, 8);
-    $reg++;
-
-    if(strlen($reg) == 1){ $reg='0'.$reg; }
-    else{ $reg = $reg;}
-
-    $reg = 'KE'.date("y").date("m").date("d").$reg;
-  }else{
-    $reg = 'KE'.date("y").date("m").date("d").'01';
-  }
-  return $reg;
-}
 function set_id_obat(){
     $CI =& get_instance();
     $reg = "";
@@ -87,8 +70,6 @@ function set_id_obat(){
     }
     return $reg;
 }
-
-
 
 
 function secondsToTime($seconds) {
