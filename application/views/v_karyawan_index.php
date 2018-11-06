@@ -4,23 +4,23 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-            <?php if ($this->session->flashdata('insert_obat') == 'sukses') { ?>
+            <?php if ($this->session->flashdata('insert_karyawan') == 'sukses') { ?>
               <div class="alert alert-success alert-dismissible" role="alert">
                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                <span>Data berhasil disimpan kedalam database!!</span>
                </div>
              <?php } ?>
-             <?php if ($this->session->flashdata('delete_obat') == 'sukses') { ?>
+             <?php if ($this->session->flashdata('delete_karyawan') == 'sukses') { ?>
                 <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span>Data berhasil dihapus!!</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <span>Data berhasil dihapus!!</span>
                 </div>
             <?php } ?>
             </div>
           </div>
           <div class="row bg-white has-shadow">
             <div class="col-12 py-3">
-              <?= anchor('karyawan/add','<i class="fa fa-plus" aria-hidden="true"></i> Add Financial Data', 'class="btn btn-primary"') ?>
+              <?= anchor('karyawan/add','<i class="fa fa-plus" aria-hidden="true"></i> Add Karyawan Data', 'class="btn btn-primary"') ?>
             </div>
             <div class="col-12">
               <div class="table-responsive">
@@ -48,8 +48,8 @@
                         <td><?=$row->alamat?></td>
                         <td><?=$row->kelurahan?></td>
                         <td><?=$row->kecamatan?></td>
-                        <td width="15%"><a href="karyawan/".$jabatan."/edit/<?=$row->id?>" class="detail-keuangan" id="<?=$row->id?>"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
-                                    <a href="#" data-id="<?=$row->id?>" class="text-danger delete_obat"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+                        <td width="15%"><a href="<?=base_url('')?>karyawan/edit/<?=$row->id?>" class="" id="<?=$row->id?>"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
+                                    <a href="#" data-id="<?=$row->id?>" data-nama="<?=$row->nama?>" data-jabatan="<?=$row->jabatan?>" class="text-danger delete_karyawan"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -59,17 +59,18 @@
           </div>
         </section>
                     <!--MODAL HAPUS-->
-            <div class="modal fade" id="delete_obat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="delete_karyawan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Delete Obat</h4>
+                    <h4 class="modal-title" id="myModalLabel">Delete Karyawan</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
                   </div>
-                        <?php echo form_open('obat/delete','class="form-horizontal"') ?>
+                    <?php echo form_open('karyawan/delete','class="form-horizontal"') ?>
                    <div class="modal-body">
                       <input type="hidden" name="_id" id="id_hapus" value="">
-                      <div class="alert alert-warning"><p>Apakah anda yakin akan menghapus Data Obat dengan ID <span id="id_obat"></span> ?</p></div>
+                      <input type="hidden" name="_jabatan" id="id_jabatan" value="">
+                      <div class="alert alert-warning"><p>Apakah anda yakin akan menghapus Data Karyawan dengan ID <span id="id_karyawan"></span> dengan nama <span id="nama_karyawan"></span> ?</p></div>
                    </div>
                     <div class="modal-footer">
                         <button class="btn_hapus btn btn-danger" tyoe="submit">Delete</button>

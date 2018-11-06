@@ -36,6 +36,7 @@ function set_id_karyawan(){
     return $reg;
 }
 
+
 function set_id_obat(){
     $CI =& get_instance();
     $reg = "";

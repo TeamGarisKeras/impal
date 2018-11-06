@@ -110,17 +110,19 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar"><img src="<?php echo base_url('assets/img/foto-profil/foto_default.jpg'); ?>" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h4">Dummy</h1>
-              <p>Dummy</p>
+              <h1 class="h4"><?= $this->session->userdata('nama')?></h1>
+              <p><?= $this->session->userdata('level')?></p>
             </div>
           </div>
-          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <!-- Sidebar Navidation Menus-->
+          <span class="heading">Main</span>
           <ul class="list-unstyled">
                     <li class="active"><a href="<?=base_url()?>dashboard"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-                    <li><a href="#karyawanDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-usd" aria-hidden="true"></i>Karyawan</a>
+                    <li><a href="#karyawanDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-users" aria-hidden="true"></i>Karyawan</a>
                       <ul id="karyawanDropdown" class="collapse list-unstyled ">
                         <?php foreach ($list_jabatan as $grid_jabatan):
-                          echo '<li><a href="'.base_url("karyawan/c/$grid_jabatan->nama_jabatan").'">'.$grid_jabatan->nama_jabatan.'</a></li>';
+                          $link_jabatan = url_title($grid_jabatan->nama_jabatan, 'underscore', TRUE);
+                          echo '<li><a href="'.base_url("karyawan/$link_jabatan").'">'.$grid_jabatan->nama_jabatan.'</a></li>';
                         endforeach; ?>
                       </ul>
                     </li>
@@ -131,13 +133,13 @@
                         <li><a href="<?=base_url()?>keuangan">Financial Data</a></li>
                       </ul>
                     </li>
-                    <li><a href="#galleryDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-picture-o" aria-hidden="true"></i>Pesanan</a>
+                    <li><a href="#galleryDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-comments-o" aria-hidden="true"></i></i>Pesanan</a>
                       <ul id="galleryDropdown" class="collapse list-unstyled ">
                         <li><a href="<?=base_url()?>post/add">Post</a></li>
                         <li><a href="<?=base_url()?>post">View Data</a></li>
                       </ul>
                     </li>
-                    <li><a href="<?=base_url('obat')?>"><i class="fa fa-file" aria-hidden="true"></i>Kelola Obat</a></li>
+                    <li><a href="<?=base_url('obat')?>"><i class="fa fa-database" aria-hidden="true"></i>Kelola Obat</a></li>
           </ul>
           <span class="heading">Extras</span>
           <ul class="list-unstyled">

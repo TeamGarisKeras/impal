@@ -21,7 +21,7 @@ class M_login extends CI_Model {
   }
 
   public function get_akun($id){
-    $query = $this->db->select('nama', 'level', 'jabatan', 'image')
+    $query = $this->db->select('nama', 'jabatan', 'image')
                       ->where('id', $id)
                       ->get('tbl_karyawan');
 

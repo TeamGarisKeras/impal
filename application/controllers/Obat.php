@@ -3,10 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Obat extends CI_Controller {
 
+	public $list_jabatan = null;
+
 	function __construct()
 	{
 			parent::__construct();
 			$this->load->model('M_obat');
+			$this->load->model('M_jabatan');
+			$this->list_jabatan = $this->M_jabatan->get_all_jabatan();
 	}
 
 	public function index()
@@ -14,6 +18,7 @@ class Obat extends CI_Controller {
     $css = array(); // Alamat CSS Dinamis
     $js = array('obat.js'); // Alamat JS Dinamis
     $data = array('title' => "Kelola Obat",
+									'list_jabatan' => $this->list_jabatan,
                   'css' => $css,
                   'js' => $js,
 									'data_obat' => $this->M_obat->get_all_obat()); // Data yang mau di passing
@@ -24,13 +29,14 @@ class Obat extends CI_Controller {
 	}
 
 	private function form($title ='Add Obat', $action ='insert', $id =''){
-		$css = array(); // Alamat CSS Dinamis
-		$js = array(); // Alamat JS Dinamis
-		$data = array('title' => $title,
+		$css = []; // Alamat CSS Dinamis
+		$js = []; // Alamat JS Dinamis
+		$data = ['title' => $title,
+									'list_jabatan' => $this->list_jabatan,
 									'css' => $css,
 									'js' => $js,
 									'data_obat' => $this->M_obat->get_obat_by_id($id),
-									'action' => 'obat/'.$action); // Data yang mau di passing
+									'action' => 'obat/'.$action]; // Data yang mau di passing
 		$this->load->view('template/v_header', $data);
 		$this->load->view('v_obat_form');
 		$this->load->view('template/v_footer');

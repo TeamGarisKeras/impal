@@ -1,4 +1,4 @@
-<section class="dashboard-counts no-padding-bottom">
+  <section class="dashboard-counts no-padding-bottom">
   <div class="container-fluid">
     <div class="row bg-white has-shadow">
         <!-- Horizontal Form-->
