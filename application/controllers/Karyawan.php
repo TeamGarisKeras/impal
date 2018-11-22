@@ -23,7 +23,7 @@ class Karyawan extends CI_Controller {
       $css = array(); // Alamat CSS Dinamis
       $js = array('karyawan.js'); // Alamat JS Dinamis
       $data = array('title' => "Kelola ".$jabatan,
-			'list_jabatan' =>$this->list_jabatan,
+							'list_jabatan' =>$this->list_jabatan,
               'css' => $css,
               'js' => $js,
               'jabatan' => $jabatan,

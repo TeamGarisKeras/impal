@@ -61,3 +61,5 @@ $route['karyawan/update'] = 'karyawan/update';
 $route['karyawan/delete'] = 'karyawan/delete';
 $route['karyawan/(:any)'] = 'karyawan/show_karyawan';
 $route['jabatan'] = 'jabatan/show_jabatan';
+$route['setting'] = 'users/setting_akun';
+$route['setting/changeprofil'] = 'users/changeprofil';

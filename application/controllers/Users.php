@@ -27,13 +27,16 @@ class Users extends CI_Controller{
 
 	public function setting_akun()
 	{
-		if($this->session->has_userdata('username') && $this->session->has_userdata('level') == 72){
-			$this->load->model('M_users');
+		if($this->session->has_userdata('id_karyawan')){
+			$this->load->model('M_login');
 			$data = array('title' => 'Account Setting',
-										'data_akun' => $this->M_users->get_akun($this->session->userdata('username')));
-			$this->load->view('admin/v_admin_header', $data);
-			$this->load->view('admin/v_setting');
-			$this->load->view('admin/v_admin_footer');
+									'list_jabatan' =>$this->list_jabatan,
+										'data_akun' => $this->M_login->get_akun_by_id($this->session->userdata('id_karyawan')));
+
+
+			$this->load->view('template/v_header', $data);
+			$this->load->view('v_setting');
+			$this->load->view('template/v_footer');
 		}else{
 			$this->load->view('errors/html/error_404');
 		}
@@ -69,15 +72,24 @@ class Users extends CI_Controller{
 
 	public function changeprofil()
 	{
-		$this->form_validation->set_rules('_nama', 'nama', 'required|max_length[30]');
+		$this->form_validation->set_rules('_nama', 'nama', 'required|max_length[30]|alpha_dash');
+		$this->form_validation->set_rules('_no_telp', 'no telp', 'required|max_length[30]|numeric');
+		$this->form_validation->set_rules('_alamat', 'alamat', 'required|max_length[100]alpha_dash');
+		$this->form_validation->set_rules('_kecamatan', 'kecamatan', 'required|max_length[30]alpha_dash');
+		$this->form_validation->set_rules('_kelurahan', 'kelurahan', 'required|max_length[30]alpha_dash');
+
 		if(!$this->form_validation->run()){
-			$this->load->view('errors/html/error_404');
+			echo validation_errors();
 		}else{
 				$this->load->model('M_users');
-				$username = $this->session->userdata('username');
-				$new_name = set_value('_nama');
-				$data = array('nama' => $new_name);
-				$this->M_users->change_profil($username, $data);
+				$id_karyawan = $this->session->userdata('id_karyawan');
+				$data = array('nama' => set_value('_nama'),
+											'no_telp' => set_value('_no_telp'),
+										  'alamat' => set_value('_alamat'),
+										   'kecamatan' => set_value('_kecamatan'),
+										   'kelurahan' => set_value('_kelurahan'));
+
+				$this->M_login->change_profil($id_karyawan, $data);
 				$this->session->set_flashdata('status_change_profil', 'sukses');
 				redirect('setting');
 			}

@@ -20,8 +20,8 @@ class M_login extends CI_Model {
     }
   }
 
-  public function get_akun($id){
-    $query = $this->db->select('nama', 'jabatan', 'image')
+  public function get_akun_for_session($id){
+    $query = $this->db->select('id, nama, jabatan')
                       ->where('id', $id)
                       ->get('tbl_karyawan');
 
@@ -30,6 +30,18 @@ class M_login extends CI_Model {
     }else{
       return false;
     }
+  }
+
+  public function get_akun_by_id($id){
+    $query = $this->db->select('id, nama, jabatan, kecamatan, kelurahan, alamat, no_telp')
+                      ->where('id', $id)
+                      ->get('tbl_karyawan');
+
+      if($query->num_rows() > 0){
+        return $query->row();
+      }else{
+        return false;
+      }
   }
 
 }
